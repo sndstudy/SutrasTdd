@@ -9,7 +9,7 @@ public class Money {
 
         Money money = (Money) object;
 
-        return this.amount == money.amount;
+        return this.amount == money.amount && getClass().equals(money.getClass());
 
     }
 
