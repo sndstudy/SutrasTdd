@@ -1,16 +1,18 @@
 package sndstudy.tdd;
 
-public abstract class Money {
+public class Money {
 
     protected int amount;
     protected String currency;
 
-    Money(int amount, String currency){
+    public Money(int amount, String currency){
         this.amount = amount;
         this.currency = currency;
     }
 
-    public abstract Money times(int multiplier);
+    public Money times(int multiplier){
+        return new Money(this.amount * multiplier,this.currency);
+    }
 
     public String currency(){
         return this.currency;
@@ -21,7 +23,7 @@ public abstract class Money {
 
         Money money = (Money) object;
 
-        return this.amount == money.amount && getClass().equals(money.getClass());
+        return this.amount == money.amount && this.currency().equals(money.currency());
 
     }
 
@@ -31,6 +33,11 @@ public abstract class Money {
 
     public static Money franc(int amount){
         return new Franc(amount,"CHF");
+    }
+
+    @Override
+    public String toString(){
+        return this.amount + " " + this.currency;
     }
 
 }
